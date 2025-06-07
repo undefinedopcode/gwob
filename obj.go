@@ -781,7 +781,7 @@ func addVertex(p *objParser, o *Obj, index string, options *ObjParserOptions) er
 	var ti int
 	var tIndex string
 	hasTextureCoord := strings.Index(index, "//") == -1 && size > 1
-	impliedTextureCoord := strings.Contains(index, "//")
+	// impliedTextureCoord := strings.Contains(index, "//")
 	if hasTextureCoord {
 		t, e := strconv.ParseInt(ind[1], 10, 32)
 		if e != nil {
@@ -829,7 +829,7 @@ func addVertex(p *objParser, o *Obj, index string, options *ObjParserOptions) er
 		o.Coord = append(o.Coord, p.textCoord[tOffset+0]) // u
 		o.Coord = append(o.Coord, p.textCoord[tOffset+1]) // v
 		o.TextCoordFound = true
-	} else if impliedTextureCoord || o.TextCoordFound {
+	} else if o.TextCoordFound {
 		o.Coord = append(o.Coord, 0) // u
 		o.Coord = append(o.Coord, 0) // v
 	}
